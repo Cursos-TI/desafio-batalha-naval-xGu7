@@ -1,4 +1,7 @@
+#include <stdio.h>
+#include <stdlib.h>
 
+int main () {
 // Desafio Batalha Naval - MateCheck
 // Este código inicial serve como base para o desenvolvimento do sistema de Batalha Naval.
 // Siga os comentários para implementar cada parte do desafio.
@@ -16,10 +19,11 @@
     // Sugestão: Posicione quatro navios no tabuleiro, incluindo dois na diagonal.
     // Sugestão: Exiba o tabuleiro completo no console, mostrando 0 para posições vazias e 3 para posições ocupadas.
 
-#include <stdio.h>
-#include <stdlib.h>
+    // Nível Mestre - Habilidades Especiais com Matrizes
+    // Sugestão: Crie matrizes para representar habilidades especiais como cone, cruz, e octaedro.
+    // Sugestão: Utilize estruturas de repetição aninhadas para preencher as áreas afetadas por essas habilidades no tabuleiro.
+    // Sugestão: Exiba o tabuleiro com as áreas afetadas, utilizando 0 para áreas não afetadas e 1 para áreas atingidas.
 
-int main () {
     int opcao;
     int tabuleiro[10][10] = {
         {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
@@ -34,6 +38,39 @@ int main () {
         {0, 0, 0, 0, 0, 0 ,0 ,0 ,0 ,0}
     };
 
+    //variavel cone
+    int linhacone = 1;
+    int centro = 2;
+
+    //desenha o cone
+    for(int i=0; i < 3; i++){
+        for(int j = -i; j <= i; j++){
+        tabuleiro [linhacone + i][centro +j] = 1;
+    }}
+
+    //variaveil cruz
+    int linhacruz = 2;
+    int colunacruz = 7;
+    
+    //desenha a cruz
+    for(int i = - 2; i <= 2; i++){
+        tabuleiro[linhacruz + i][colunacruz] = 2;
+    } for (int j = -2; j <= 2; j++) {
+        tabuleiro[linhacruz][colunacruz + j] = 2;
+    }
+    //variavel octaedro
+    int linhaocta = 7;
+    int colunaocta = 4;
+
+    //desenha o octaedro
+    for(int i = 0; i < 3; i++){
+        for(int j = -1; j <= 1; j++){
+            if(i == 1 || j == 0){
+                tabuleiro[linhaocta + i][colunaocta + j] = 4;
+            }
+        }
+    }
+    
     printf("Menu:\n1. Jogar\n2. Regras\n3. Sair\n");
     scanf("%d", &opcao);
 
@@ -133,11 +170,7 @@ int main () {
         printf("Opcao invalida, tente novamente!\n");
         break;
     }
-    // Nível Mestre - Habilidades Especiais com Matrizes
-    // Sugestão: Crie matrizes para representar habilidades especiais como cone, cruz, e octaedro.
-    // Sugestão: Utilize estruturas de repetição aninhadas para preencher as áreas afetadas por essas habilidades no tabuleiro.
-    // Sugestão: Exiba o tabuleiro com as áreas afetadas, utilizando 0 para áreas não afetadas e 1 para áreas atingidas.
-
+   
     // Exemplos de exibição das habilidades:
     // Exemplo para habilidade em cone:
     // 0 0 1 0 0
