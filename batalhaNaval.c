@@ -1,4 +1,3 @@
-#include <stdio.h>
 
 // Desafio Batalha Naval - MateCheck
 // Este código inicial serve como base para o desenvolvimento do sistema de Batalha Naval.
@@ -10,49 +9,117 @@
     // Sugestão: Utilize `printf` para exibir as coordenadas de cada parte dos navios.
 
     //nivel novato:
+    //feito!!!
+
+    // Nível Aventureiro - Expansão do Tabuleiro e Posicionamento Diagonal
+    // Sugestão: Expanda o tabuleiro para uma matriz 10x10.
+    // Sugestão: Posicione quatro navios no tabuleiro, incluindo dois na diagonal.
+    // Sugestão: Exiba o tabuleiro completo no console, mostrando 0 para posições vazias e 3 para posições ocupadas.
+
+#include <stdio.h>
+#include <stdlib.h>
+
 int main () {
-
-    // Variáveis:
     int opcao;
-
-    // Matriz do tabuleiro:
-    int tabuleiro [10][10] = {
+    int tabuleiro[10][10] = {
         {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 3, 3, 3 ,0 ,0 ,0 ,0},
         {0, 0, 0, 0, 0, 0 ,0 ,0 ,0 ,0},
         {0, 0, 0, 0, 0, 0 ,0 ,0 ,0 ,0},
         {0, 0, 0, 0, 0, 0 ,0 ,0 ,0 ,0},
         {0, 0, 0, 0, 0, 0 ,0 ,0 ,0 ,0},
         {0, 0, 0, 0, 0, 0 ,0 ,0 ,0 ,0},
-        {0, 3, 0, 0, 0, 0 ,0 ,0 ,0 ,0},
-        {0, 3, 0, 0, 0, 0 ,0 ,0 ,0 ,0},
-        {0, 3, 0, 0, 0, 0 ,0 ,0 ,0 ,0}
+        {0, 0, 0, 0, 0, 0 ,0 ,0 ,0 ,0},
+        {0, 0, 0, 0, 0, 0 ,0 ,0 ,0 ,0},
+        {0, 0, 0, 0, 0, 0 ,0 ,0 ,0 ,0},
+        {0, 0, 0, 0, 0, 0 ,0 ,0 ,0 ,0}
     };
 
-    // Menu:
     printf("Menu:\n1. Jogar\n2. Regras\n3. Sair\n");
     scanf("%d", &opcao);
 
-    // Menu usando switch
-    switch (opcao)
-    {
-    case 1:
-        // Imprimir tabuleiro com for
-        printf("   TABULEIRO BATALHA NAVAL\n");
+    switch (opcao) {
+    case 1: {
+        // variavies e posicionamento do navio
+        int linha, direcao, valido = 1;
+        char letra;
+        int coluna;
+
+        printf("Digite a linha (1 a 10) para posicionar a primeira parte do navio: ");
+        scanf("%d", &linha);
+        linha--;
+
+        printf("Digite a coluna (A a J, letra maiuscula): ");
+        scanf(" %c", &letra);
+        coluna = letra - 'A';
+
+        printf("Escolha a direção do navio (1-horizontal, 2-vertical, 3-diagonal direita, 4-diagonal esquerda): ");
+        scanf("%d", &direcao);
+
+        switch (direcao)
+        {
+        case 1:
+        //codigo horizontal
+            if(linha<7 && coluna<7){
+                for(int i = 0; i < 3; i++){
+                    tabuleiro[linha + i][coluna] = 3;
+                }
+            }else{
+                printf("O navio nao cabe nessa posição!");
+            }
+            break;
+        //codigo vertical
+        case 2:
+            if(linha<7 && coluna<7){
+                for(int i = 0; i < 3; i++){
+                    tabuleiro[linha][coluna + i] = 3;
+                }
+            }else{
+                printf("O navio nao cabe nessa posição!");
+                exit(0);
+            }
+            break;
+        //codigo diagonal direita
+        case 3:
+            if(linha<7 && coluna<7){
+                for (int i = 0; i < 3; i++) {
+                tabuleiro[linha + i][coluna +i]=3;
+                }}else{
+                    printf("O navio nao cabe nessa posição!");
+                    exit(0);
+                }
+            break;
+        //codigo diagonal esquerda
+        case 4:
+            if(linha<7 && coluna<7){
+                for (int i = 0; i < 3; i++) {
+                tabuleiro[linha + i][coluna -i]=3;
+                }}else{
+                    printf("O navio nao cabe nessa posição!");
+                    exit(0);
+                }
+            break;
+        
+        default:
+            printf("Opcao invalida!");
+            break;
+        }
+        //imprimindo o tabuleiro
+        printf("\n   TABULEIRO BATALHA NAVAL\n");
         printf("    A B C D E F G H I J\n");
-        // Linhas
+
         for (int i = 0; i < 10; i++) {
             if (i < 9)
                 printf(" %d. ", i + 1);
             else
                 printf("%d. ", i + 1);
-        //Colunas
+
             for (int j = 0; j < 10; j++) {
                 printf("%d ", tabuleiro[i][j]);
             }
             printf("\n");
         }
         break;
+    }
 
     case 2:
         printf("Regras...\n");
@@ -66,13 +133,6 @@ int main () {
         printf("Opcao invalida, tente novamente!\n");
         break;
     }
-
-
-    // Nível Aventureiro - Expansão do Tabuleiro e Posicionamento Diagonal
-    // Sugestão: Expanda o tabuleiro para uma matriz 10x10.
-    // Sugestão: Posicione quatro navios no tabuleiro, incluindo dois na diagonal.
-    // Sugestão: Exiba o tabuleiro completo no console, mostrando 0 para posições vazias e 3 para posições ocupadas.
-
     // Nível Mestre - Habilidades Especiais com Matrizes
     // Sugestão: Crie matrizes para representar habilidades especiais como cone, cruz, e octaedro.
     // Sugestão: Utilize estruturas de repetição aninhadas para preencher as áreas afetadas por essas habilidades no tabuleiro.
